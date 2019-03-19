@@ -42,9 +42,9 @@ export default {
             },
             render: {
                 item: (item, escape) => {
-                    return '<div class="flex-none rounded-lg cursor-default text-center text-white bg-primary px-2 py-1 mr-1 mb-1">' +
-                        '<span>' + escape(item[this.field.optionLabel]) + '</span>' +
-                        '<span onClick="$(\'#' + this.field.attribute + '\').get(0).selectize.removeItem(\'' + item[this.field.optionValue] + '\')" class="ml-1 px-1 rounded cursor-pointer font-bold border-transparent hover:bg-primary-dark">x</span>' +
+                    return '<div class="flex-grow relative rounded-lg cursor-default bg-30 px-2 py-1 mr-1 mb-1">' +
+                            '<div class="inline-flex">' + escape(item[this.$el.selectize.settings.labelField]) + '</div>';
+                        '<span onClick="$(\'#' + this.field.attribute + '\').get(0).selectize.removeItem(\'' + item[this.field.optionValue] + '\')" class="absolute pin-t pin-r inline-flex ml-2 px-1 rounded cursor-pointer font-bold border-transparent hover:bg-50">x</span>' +
                     '</div>';
                 },
                 option: (item, escape) => {
@@ -82,8 +82,8 @@ export default {
     data() {
         return {
             settings: {
-                wrapperClass: 'h-full form-control',
-                inputClass: 'form-input form-input-bordered flex flex-wrap justify-start items-center p-4',
+                wrapperClass: 'h-auto form-control',
+                inputClass: 'form-input form-input-bordered flex flex-wrap justify-start items-center p-2',
                 dropdownClass: '',
                 dropdownContentClass: 'w-full h-full form-input-bordered',
             }
