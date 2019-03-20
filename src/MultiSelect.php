@@ -90,11 +90,15 @@ class MultiSelect extends Field
             return;
         }
 
-        $idsToAttach = collect(explode(',', $request->input($requestAttribute)));
+        $requestIds = collect();
+        if ($request->input($requestAttribute)) {
+            $requestIds = collect(explode(',', $request->input($requestAttribute)));
+        }
         $relation = $model->$attribute();
 
         $currentRelationIds = $relation->get()->pluck('id');
-        $relation->detach($currentRelationIds->diff($idsToAttach)->all());
-        $relation->attach($idsToAttach->diff($currentRelationIds));
+        $relation->detach($currentRelationIds->diff($requestIds)->all());
+        $idsToAttach = $requestIds->diff($currentRelationIds)->all();
+        $relation->attach($idsToAttach);
     }
 }
