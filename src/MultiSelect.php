@@ -86,8 +86,15 @@ class MultiSelect extends Field
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        if ($request->exists($requestAttribute)) {
-            $model->$attribute()->sync(explode(',', $request->input($requestAttribute)));
+        if ($request->exists($requestAttribute) === false) {
+            return;
         }
+
+        $idsToAttach = collect(explode(',', $request->input($requestAttribute)));
+        $relation = $model->$attribute();
+
+        $currentRelationIds = $relation->get()->pluck('id');
+        $relation->detach($currentRelationIds->diff($idsToAttach)->all());
+        $relation->attach($idsToAttach->diff($currentRelationIds));
     }
 }
