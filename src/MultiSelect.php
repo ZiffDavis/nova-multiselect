@@ -1,6 +1,6 @@
 <?php
 
-namespace ZiffDavis\Luna\MultiSelect;
+namespace ZiffDavis\Nova\MultiSelect;
 
 use Laravel\Nova\Fields\Field;
 use Laravel\Nova\Http\Requests\NovaRequest;

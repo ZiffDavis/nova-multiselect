@@ -1,5 +1,5 @@
 {
-    "name": "ziffdavis/luna-multiselect",
+    "name": "ziffdavis/nova-multiselect",
     "description": "A Laravel Nova multiselect field.",
     "keywords": [
         "laravel",
@@ -12,13 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "ZiffDavis\\Luna\\MultiSelect\\": "src/"
+            "ZiffDavis\\Nova\\MultiSelect\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ZiffDavis\\Luna\\MultiSelect\\FieldServiceProvider"
+                "ZiffDavis\\Nova\\MultiSelect\\FieldServiceProvider"
             ]
         }
     },

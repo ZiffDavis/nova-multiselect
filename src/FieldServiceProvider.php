@@ -1,6 +1,6 @@
 <?php
 
-namespace ZiffDavis\Luna\MultiSelect;
+namespace ZiffDavis\Nova\MultiSelect;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;

@@ -2,7 +2,7 @@
 
 ## Install
 
-`composer require ziffdavis/luna-multiselect`
+`composer require ziffdavis/nova-multiselect`
 
 ## Description
 
