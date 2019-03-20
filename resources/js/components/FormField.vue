@@ -42,9 +42,9 @@ export default {
             },
             render: {
                 item: (item, escape) => {
-                    return '<div class="flex-grow relative rounded-lg cursor-default bg-30 px-2 py-1 mr-1 mb-1">' +
+                    return '<div class="flex-grow relative rounded-lg cursor-default bg-30 px-3 py-1 mr-1 mb-1">' +
                             '<div>' + escape(item[this.field.optionLabel]) + '</div>' +
-                        '<span onClick="$(\'#' + this.field.attribute + '\').get(0).selectize.removeItem(\'' + item[this.field.optionValue] + '\')" class="absolute pin-t pin-r inline-flex ml-2 px-1 rounded cursor-pointer font-bold border-transparent hover:bg-50">x</span>' +
+                        '<span onClick="$(\'#' + this.field.attribute + '\').get(0).selectize.removeItem(\'' + item[this.field.optionValue] + '\')" class="absolute pin-t pin-r inline-flex ml-2 mt-1 px-1 rounded cursor-pointer font-bold border-transparent hover:bg-50">x</span>' +
                     '</div>';
                 },
                 option: (item, escape) => {

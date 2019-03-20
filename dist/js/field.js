@@ -10858,7 +10858,7 @@
 					},
 					render: {
 						item: function item(_item, escape) {
-							return '<div class="flex-grow relative rounded-lg cursor-default bg-30 px-2 py-1 mr-1 mb-1">' + '<div>' + escape(_item[_this.field.optionLabel]) + '</div>' + '<span onClick="$(\'#' + _this.field.attribute + '\').get(0).selectize.removeItem(\'' + _item[_this.field.optionValue] + '\')" class="absolute pin-t pin-r inline-flex ml-2 px-1 rounded cursor-pointer font-bold border-transparent hover:bg-50">x</span>' + '</div>';
+							return '<div class="flex-grow relative rounded-lg cursor-default bg-30 px-3 py-1 mr-1 mb-1">' + '<div>' + escape(_item[_this.field.optionLabel]) + '</div>' + '<span onClick="$(\'#' + _this.field.attribute + '\').get(0).selectize.removeItem(\'' + _item[_this.field.optionValue] + '\')" class="absolute pin-t pin-r inline-flex ml-2 mt-1 px-1 rounded cursor-pointer font-bold border-transparent hover:bg-50">x</span>' + '</div>';
 						},
 						option: function option(item, escape) {
 							return '<div class="px-2 py-2 ml-lg-n1">' + '<span>' + escape(item[_this.field.optionLabel]) + '</span>' + '</div>';
@@ -10922,7 +10922,7 @@
 				 * Fill the given FormData object with the field's internal value.
 				 */
 				fill: function fill(formData) {
-					formData.append(this.field.attribute, this.value || []);
+					formData.append(this.field.attribute, this.value || '');
 				},
 
 
