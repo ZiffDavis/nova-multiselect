@@ -36,6 +36,10 @@ class MultiSelect extends Field
      */
     private $optionLabel = 'name';
 
+    /**
+     * @var int
+     */
+    private $cap;
 
     public function options($value)
     {
@@ -66,12 +70,20 @@ class MultiSelect extends Field
         return $this;
     }
 
+    public function cap(int $cap)
+    {
+        $this->cap = $cap;
+
+        return $this;
+    }
+
     public function meta()
     {
         return array_merge([
-            'options' => $this->options,
+            'options'     => $this->options,
             'optionLabel' => $this->optionLabel,
             'optionValue' => $this->optionValue,
+            'cap'         => $this->cap,
         ], $this->meta);
     }
 
@@ -94,6 +106,9 @@ class MultiSelect extends Field
         if ($request->input($requestAttribute)) {
             $requestIds = collect(explode(',', $request->input($requestAttribute)));
         }
+
+        $model->save();
+
         $relation = $model->$attribute();
 
         $currentRelationIds = $relation->get()->pluck('id');
