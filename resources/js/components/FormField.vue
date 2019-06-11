@@ -33,6 +33,7 @@ export default {
             options: this.field.options,
             persist: false,
             searchField: [this.field.optionLabel, this.field.optionValue],
+            maxItems: this.field.maxItems,
             onInitialize: () => {
                 $select.get(0).selectize.setValue(this.value, true);
             },

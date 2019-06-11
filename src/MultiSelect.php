@@ -36,6 +36,11 @@ class MultiSelect extends Field
      */
     private $optionLabel = 'name';
 
+    /**
+     * @var integer
+     */
+    private $maxItems = null;
+
 
     public function options($value)
     {
@@ -66,12 +71,20 @@ class MultiSelect extends Field
         return $this;
     }
 
+    public function maxItems($maxItems)
+    {
+        $this->maxItems = $maxItems;
+
+        return $this;
+    }
+
     public function meta()
     {
         return array_merge([
             'options' => $this->options,
             'optionLabel' => $this->optionLabel,
             'optionValue' => $this->optionValue,
+            'maxItems' => $this->maxItems,
         ], $this->meta);
     }
 

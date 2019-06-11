@@ -26,4 +26,5 @@ public function fields(Request $request)
 | `disabled($bool)`     | Sets whether or not the field is disabled | 
 | `optionLabel($label)` | Sets the attribute name to use for the option label (Default 'name')  | 
 | `optionValue($value)` | Sets the attribute name to use for the option value (Default 'id')  | 
+| `maxItems($value)`    | Sets the max number of items the user can select (Default null)  | 
  
