@@ -83,7 +83,7 @@ class MultiSelect extends Field
             'options'     => $this->options,
             'optionLabel' => $this->optionLabel,
             'optionValue' => $this->optionValue,
-            'maxItems'         => $this->maxItems,
+            'maxItems'    => $this->maxItems,
         ], $this->meta);
     }
 
