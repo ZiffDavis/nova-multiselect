@@ -39,7 +39,7 @@ class MultiSelect extends Field
     /**
      * @var int
      */
-    private $cap;
+    private $maxItems;
 
     public function options($value)
     {
@@ -70,9 +70,9 @@ class MultiSelect extends Field
         return $this;
     }
 
-    public function cap(int $cap)
+    public function maxItems(int $maxItems)
     {
-        $this->cap = $cap;
+        $this->maxItems = $maxItems;
 
         return $this;
     }
@@ -83,7 +83,7 @@ class MultiSelect extends Field
             'options'     => $this->options,
             'optionLabel' => $this->optionLabel,
             'optionValue' => $this->optionValue,
-            'cap'         => $this->cap,
+            'maxItems'         => $this->maxItems,
         ], $this->meta);
     }
 
