@@ -107,6 +107,11 @@ class MultiSelect extends Field
             $requestIds = collect(explode(',', $request->input($requestAttribute)));
         }
 
+        /**
+         * Since the multselect field is in the same UI both the pivot and parent table
+         * are written at the same time.  Saving the model ensures the record exists in
+         * the parent table.
+         */
         $model->save();
 
         $relation = $model->$attribute();
