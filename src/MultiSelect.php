@@ -36,6 +36,10 @@ class MultiSelect extends Field
      */
     private $optionLabel = 'name';
 
+    /**
+     * @var int
+     */
+    private $maxItems;
 
     public function options($value)
     {
@@ -66,12 +70,20 @@ class MultiSelect extends Field
         return $this;
     }
 
+    public function maxItems(int $maxItems)
+    {
+        $this->maxItems = $maxItems;
+
+        return $this;
+    }
+
     public function meta()
     {
         return array_merge([
-            'options' => $this->options,
+            'options'     => $this->options,
             'optionLabel' => $this->optionLabel,
             'optionValue' => $this->optionValue,
+            'maxItems'    => $this->maxItems,
         ], $this->meta);
     }
 
@@ -94,6 +106,14 @@ class MultiSelect extends Field
         if ($request->input($requestAttribute)) {
             $requestIds = collect(explode(',', $request->input($requestAttribute)));
         }
+
+        /**
+         * Since the multselect field is in the same UI both the pivot and parent table
+         * are written at the same time.  Saving the model ensures the record exists in
+         * the parent table.
+         */
+        $model->save();
+
         $relation = $model->$attribute();
 
         $currentRelationIds = $relation->get()->pluck('id');
