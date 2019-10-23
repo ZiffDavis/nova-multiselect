@@ -111,8 +111,10 @@ class MultiSelect extends Field
          * Since the multselect field is in the same UI both the pivot and parent table
          * are written at the same time.  Saving the model ensures the record exists in
          * the parent table.
+         * 
+         * Commented this out because it introduced other problems, see https://jira.zifftech.com/browse/BF-1010
          */
-        $model->save();
+        //$model->save();
 
         $relation = $model->$attribute();
 
