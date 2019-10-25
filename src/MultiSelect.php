@@ -98,29 +98,29 @@ class MultiSelect extends Field
      */
     protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        if ($request->exists($requestAttribute) === false) {
-            return;
-        }
+        return function () use ($request, $requestAttribute, $model, $attribute) {
+            if ($request->exists($requestAttribute) === false) {
+                return;
+            }
+           
+            $requestIds = collect();
 
-        $requestIds = collect();
-        if ($request->input($requestAttribute)) {
-            $requestIds = collect(explode(',', $request->input($requestAttribute)));
-        }
-
-        /**
-         * Since the multselect field is in the same UI both the pivot and parent table
-         * are written at the same time.  Saving the model ensures the record exists in
-         * the parent table.
-         * 
-         * Commented this out because it introduced other problems, see https://jira.zifftech.com/browse/BF-1010
-         */
-        //$model->save();
-
-        $relation = $model->$attribute();
-
-        $currentRelationIds = $relation->get()->pluck('id');
-        $relation->detach($currentRelationIds->diff($requestIds)->all());
-        $idsToAttach = $requestIds->diff($currentRelationIds)->all();
-        $relation->attach($idsToAttach);
+            if ($request->input($requestAttribute)) {
+                $requestIds = collect(explode(',', $request->input($requestAttribute)));
+            }
+           
+            $relation = $model->{$attribute}();
+           
+            // this could potentially be sync()?
+            $currentRelationIds = $relation->get()->pluck('id');
+            
+            // first detach ones missing from request
+            $relation->detach($currentRelationIds->diff($requestIds)->all());
+            
+            // figure out whats left, and attach them
+            $relation->attach(
+                $requestIds->diff($currentRelationIds)->all()
+            );
+        };
     }
 }
