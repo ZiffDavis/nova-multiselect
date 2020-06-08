@@ -40,6 +40,12 @@ class MultiSelect extends Field
      * @var int
      */
     private $maxItems;
+    
+    /**
+     * additional attachment data
+     * @var mixed
+     */
+    private $attachmentData = null;
 
     public function options($value)
     {
@@ -73,6 +79,19 @@ class MultiSelect extends Field
     public function maxItems(int $maxItems)
     {
         $this->maxItems = $maxItems;
+
+        return $this;
+    }
+    
+    /**
+     * Pass additional fields to the relationship for attachement.
+     *
+     * @param array $attachmentData
+     * @return $this
+     */
+    public function attachAdditionalRelationData(array $attachmentData)
+    {
+        $this->attachmentData = $attachmentData;
 
         return $this;
     }
@@ -118,8 +137,13 @@ class MultiSelect extends Field
             $relation->detach($currentRelationIds->diff($requestIds)->all());
             
             // figure out whats left, and attach them
+            $toAttachArray = [];
+            if (null !== $this->attachmentData) {
+                $toAttachArray = $this->attachmentData;
+            }
             $relation->attach(
-                $requestIds->diff($currentRelationIds)->all()
+                $requestIds->diff($currentRelationIds)->all(),
+                $toAttachArray
             );
         };
     }
